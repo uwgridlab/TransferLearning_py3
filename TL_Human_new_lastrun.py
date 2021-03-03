@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2020.2.10),
-    on Tue Mar  2 17:49:48 2021
+    on Tue Mar  2 20:34:06 2021
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -56,7 +56,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='/Users/llevinson/Documents/Transfer_Learning/TL_Human_new_lastrun.py',
+    originPath='/Users/llevinson/Documents/TransferLearning_py3/TL_Human_new_lastrun.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -87,60 +87,73 @@ defaultKeyboard = keyboard.Keyboard()
 
 # Initialize components for Routine "settings"
 settingsClock = core.Clock()
+set_text = visual.TextStim(win=win, name='set_text',
+    text='Choose picture set (1 or 2)',
+    font='Arial',
+    pos=(-.3, .15), height=0.05, wrapWidth=None, ori=0, 
+    color='black', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=0.0);
 slider = visual.Slider(win=win, name='slider',
-    size=(.3, 0.05), pos=(0, .35), units=None,
+    size=(.2, 0.05), pos=(-.3, .35), units=None,
     labels=['1', '2'], ticks=(1, 2),
     granularity=1, style=['radio'],
     color='Black', font='HelveticaBold',
-    flip=False, depth=0)
+    flip=False, depth=-1)
+day_text = visual.TextStim(win=win, name='day_text',
+    text='Choose TL day (1 or 2)',
+    font='Arial',
+    pos=(-.3, .45), height=0.05, wrapWidth=None, ori=0, 
+    color='black', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-2.0);
+slider_2 = visual.Slider(win=win, name='slider_2',
+    size=(0.2, 0.05), pos=(-.3, 0.05), units=None,
+    labels=['1', '2'], ticks=(1, 2),
+    granularity=1, style=['radio'],
+    color='Black', font='HelveticaBold',
+    flip=False, depth=-3)
+pergroup_text = visual.TextStim(win=win, name='pergroup_text',
+    text='Choose number of images per group (3-5)',
+    font='Arial',
+    pos=(-.3, -.15), height=0.05, wrapWidth=None, ori=0, 
+    color='black', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=-4.0);
+slider_3 = visual.Slider(win=win, name='slider_3',
+    size=(.3, 0.05), pos=(-.3, -0.25), units=None,
+    labels=['3', '4', '5'], ticks=(3, 4, 5),
+    granularity=1, style=['radio'],
+    color='Black', font='HelveticaBold',
+    flip=False, depth=-5)
 cont_text = visual.TextStim(win=win, name='cont_text',
     text='Press space bar to continue.',
     font='Arial',
     pos=(0, -0.4), height=0.05, wrapWidth=None, ori=0, 
-    color='white', colorSpace='rgb', opacity=1, 
-    languageStyle='LTR',
-    depth=-1.0);
-day_text = visual.TextStim(win=win, name='day_text',
-    text='Choose TL day (1 or 2)',
-    font='Arial',
-    pos=(0, .45), height=0.05, wrapWidth=None, ori=0, 
     color='black', colorSpace='rgb', opacity=1, 
     languageStyle='LTR',
-    depth=-2.0);
+    depth=-6.0);
 cont_key = keyboard.Keyboard()
-set_text = visual.TextStim(win=win, name='set_text',
-    text='Choose picture set (1 or 2)',
+sync_text = visual.TextStim(win=win, name='sync_text',
+    text='Choose a sync method',
     font='Arial',
-    pos=(0, .15), height=0.05, wrapWidth=None, ori=0, 
+    pos=(.3, .45), height=0.05, wrapWidth=None, ori=0, 
     color='black', colorSpace='rgb', opacity=1, 
     languageStyle='LTR',
-    depth=-5.0);
-slider_2 = visual.Slider(win=win, name='slider_2',
-    size=(0.3, 0.05), pos=(0, 0.05), units=None,
-    labels=['1', '2'], ticks=(1, 2),
+    depth=-9.0);
+slider_4 = visual.Slider(win=win, name='slider_4',
+    size=(.3, .05), pos=(.3, 0.35), units=None,
+    labels=['audio', 'diode', 'TTL'], ticks=(0, 1, 2),
     granularity=1, style=['radio'],
-    color='Black', font='HelveticaBold',
-    flip=False, depth=-6)
-pergroup_text = visual.TextStim(win=win, name='pergroup_text',
-    text='Choose number of images per group (3, 4, or 5)',
-    font='Arial',
-    pos=(0, -.15), height=0.05, wrapWidth=None, ori=0, 
-    color='black', colorSpace='rgb', opacity=1, 
-    languageStyle='LTR',
-    depth=-7.0);
-slider_3 = visual.Slider(win=win, name='slider_3',
-    size=(.3, 0.05), pos=(0, -0.25), units=None,
-    labels=['3', '4', '5'], ticks=(3, 4, 5),
-    granularity=1, style=['radio'],
-    color='Black', font='HelveticaBold',
-    flip=False, depth=-8)
+    color='black', font='HelveticaBold',
+    flip=False, depth=-10)
 
 # Initialize components for Routine "welcome"
 welcomeClock = core.Clock()
 welcome_text = visual.TextStim(win=win, name='welcome_text',
     text='Please figure out which image belongs to which side (left or right) by pressing the arrow keys.\n\nPress SPACE to continue.',
     font='Arial',
-    pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
     color='black', colorSpace='rgb', opacity=1, 
     languageStyle='LTR',
     depth=0.0);
@@ -184,6 +197,16 @@ right = visual.ImageStim(
     flipHoriz=False, flipVert=False,
     texRes=512, interpolate=True, depth=-3.0)
 key_resp_2 = keyboard.Keyboard()
+polygon = visual.Rect(
+    win=win, name='polygon',
+    width=(0.2, 0.2)[0], height=(0.2, 0.2)[1],
+    ori=0, pos=(-.75, -.5),
+    lineWidth=1, lineColor=[1,1,1], lineColorSpace='rgb',
+    fillColor=[1,1,1], fillColorSpace='rgb',
+    opacity=1, depth=-5.0, interpolate=True)
+sound_1 = sound.Sound('A', secs=-1, stereo=True, hamming=True,
+    name='sound_1')
+sound_1.setVolume(1)
 
 # Initialize components for Routine "feedback1"
 feedback1Clock = core.Clock()
@@ -207,6 +230,13 @@ ISI_text = visual.TextStim(win=win, name='ISI_text',
 
 # Initialize components for Routine "thank_you"
 thank_youClock = core.Clock()
+end_text = visual.TextStim(win=win, name='end_text',
+    text='Thank you for your participation! Press esc to exit.',
+    font='Arial',
+    pos=(0, 0), height=0.05, wrapWidth=None, ori=0, 
+    color='black', colorSpace='rgb', opacity=1, 
+    languageStyle='LTR',
+    depth=0.0);
 
 # Create some handy timers
 globalClock = core.Clock()  # to track the time since experiment started
@@ -216,13 +246,14 @@ routineTimer = core.CountdownTimer()  # to track time remaining of each (non-sli
 continueRoutine = True
 # update component parameters for each repeat
 slider.reset()
+slider_2.reset()
+slider_3.reset()
 cont_key.keys = []
 cont_key.rt = []
 _cont_key_allKeys = []
-slider_2.reset()
-slider_3.reset()
+slider_4.reset()
 # keep track of which components have finished
-settingsComponents = [slider, cont_text, day_text, cont_key, set_text, slider_2, pergroup_text, slider_3]
+settingsComponents = [set_text, slider, day_text, slider_2, pergroup_text, slider_3, cont_text, cont_key, sync_text, slider_4]
 for thisComponent in settingsComponents:
     thisComponent.tStart = None
     thisComponent.tStop = None
@@ -245,6 +276,15 @@ while continueRoutine:
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
     
+    # *set_text* updates
+    if set_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        set_text.frameNStart = frameN  # exact frame index
+        set_text.tStart = t  # local t and not account for scr refresh
+        set_text.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(set_text, 'tStartRefresh')  # time at next scr refresh
+        set_text.setAutoDraw(True)
+    
     # *slider* updates
     if slider.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
         # keep track of start time/frame for later
@@ -254,15 +294,6 @@ while continueRoutine:
         win.timeOnFlip(slider, 'tStartRefresh')  # time at next scr refresh
         slider.setAutoDraw(True)
     
-    # *cont_text* updates
-    if cont_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-        # keep track of start time/frame for later
-        cont_text.frameNStart = frameN  # exact frame index
-        cont_text.tStart = t  # local t and not account for scr refresh
-        cont_text.tStartRefresh = tThisFlipGlobal  # on global time
-        win.timeOnFlip(cont_text, 'tStartRefresh')  # time at next scr refresh
-        cont_text.setAutoDraw(True)
-    
     # *day_text* updates
     if day_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
         # keep track of start time/frame for later
@@ -271,37 +302,6 @@ while continueRoutine:
         day_text.tStartRefresh = tThisFlipGlobal  # on global time
         win.timeOnFlip(day_text, 'tStartRefresh')  # time at next scr refresh
         day_text.setAutoDraw(True)
-    
-    # *cont_key* updates
-    waitOnFlip = False
-    if cont_key.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-        # keep track of start time/frame for later
-        cont_key.frameNStart = frameN  # exact frame index
-        cont_key.tStart = t  # local t and not account for scr refresh
-        cont_key.tStartRefresh = tThisFlipGlobal  # on global time
-        win.timeOnFlip(cont_key, 'tStartRefresh')  # time at next scr refresh
-        cont_key.status = STARTED
-        # keyboard checking is just starting
-        waitOnFlip = True
-        win.callOnFlip(cont_key.clock.reset)  # t=0 on next screen flip
-        win.callOnFlip(cont_key.clearEvents, eventType='keyboard')  # clear events on next screen flip
-    if cont_key.status == STARTED and not waitOnFlip:
-        theseKeys = cont_key.getKeys(keyList=['space'], waitRelease=False)
-        _cont_key_allKeys.extend(theseKeys)
-        if len(_cont_key_allKeys):
-            cont_key.keys = _cont_key_allKeys[-1].name  # just the last key pressed
-            cont_key.rt = _cont_key_allKeys[-1].rt
-            # a response ends the routine
-            continueRoutine = False
-    
-    # *set_text* updates
-    if set_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-        # keep track of start time/frame for later
-        set_text.frameNStart = frameN  # exact frame index
-        set_text.tStart = t  # local t and not account for scr refresh
-        set_text.tStartRefresh = tThisFlipGlobal  # on global time
-        win.timeOnFlip(set_text, 'tStartRefresh')  # time at next scr refresh
-        set_text.setAutoDraw(True)
     
     # *slider_2* updates
     if slider_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
@@ -330,6 +330,55 @@ while continueRoutine:
         win.timeOnFlip(slider_3, 'tStartRefresh')  # time at next scr refresh
         slider_3.setAutoDraw(True)
     
+    # *cont_text* updates
+    if cont_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        cont_text.frameNStart = frameN  # exact frame index
+        cont_text.tStart = t  # local t and not account for scr refresh
+        cont_text.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(cont_text, 'tStartRefresh')  # time at next scr refresh
+        cont_text.setAutoDraw(True)
+    
+    # *cont_key* updates
+    waitOnFlip = False
+    if cont_key.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        cont_key.frameNStart = frameN  # exact frame index
+        cont_key.tStart = t  # local t and not account for scr refresh
+        cont_key.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(cont_key, 'tStartRefresh')  # time at next scr refresh
+        cont_key.status = STARTED
+        # keyboard checking is just starting
+        waitOnFlip = True
+        win.callOnFlip(cont_key.clock.reset)  # t=0 on next screen flip
+        win.callOnFlip(cont_key.clearEvents, eventType='keyboard')  # clear events on next screen flip
+    if cont_key.status == STARTED and not waitOnFlip:
+        theseKeys = cont_key.getKeys(keyList=['space'], waitRelease=False)
+        _cont_key_allKeys.extend(theseKeys)
+        if len(_cont_key_allKeys):
+            cont_key.keys = _cont_key_allKeys[-1].name  # just the last key pressed
+            cont_key.rt = _cont_key_allKeys[-1].rt
+            # a response ends the routine
+            continueRoutine = False
+    
+    # *sync_text* updates
+    if sync_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        sync_text.frameNStart = frameN  # exact frame index
+        sync_text.tStart = t  # local t and not account for scr refresh
+        sync_text.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(sync_text, 'tStartRefresh')  # time at next scr refresh
+        sync_text.setAutoDraw(True)
+    
+    # *slider_4* updates
+    if slider_4.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        slider_4.frameNStart = frameN  # exact frame index
+        slider_4.tStart = t  # local t and not account for scr refresh
+        slider_4.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(slider_4, 'tStartRefresh')  # time at next scr refresh
+        slider_4.setAutoDraw(True)
+    
     # check for quit (typically the Esc key)
     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
         core.quit()
@@ -351,14 +400,26 @@ while continueRoutine:
 for thisComponent in settingsComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
+thisExp.addData('set_text.started', set_text.tStartRefresh)
+thisExp.addData('set_text.stopped', set_text.tStopRefresh)
 thisExp.addData('slider.response', slider.getRating())
 thisExp.addData('slider.rt', slider.getRT())
 thisExp.addData('slider.started', slider.tStartRefresh)
 thisExp.addData('slider.stopped', slider.tStopRefresh)
-thisExp.addData('cont_text.started', cont_text.tStartRefresh)
-thisExp.addData('cont_text.stopped', cont_text.tStopRefresh)
 thisExp.addData('day_text.started', day_text.tStartRefresh)
 thisExp.addData('day_text.stopped', day_text.tStopRefresh)
+thisExp.addData('slider_2.response', slider_2.getRating())
+thisExp.addData('slider_2.rt', slider_2.getRT())
+thisExp.addData('slider_2.started', slider_2.tStartRefresh)
+thisExp.addData('slider_2.stopped', slider_2.tStopRefresh)
+thisExp.addData('pergroup_text.started', pergroup_text.tStartRefresh)
+thisExp.addData('pergroup_text.stopped', pergroup_text.tStopRefresh)
+thisExp.addData('slider_3.response', slider_3.getRating())
+thisExp.addData('slider_3.rt', slider_3.getRT())
+thisExp.addData('slider_3.started', slider_3.tStartRefresh)
+thisExp.addData('slider_3.stopped', slider_3.tStopRefresh)
+thisExp.addData('cont_text.started', cont_text.tStartRefresh)
+thisExp.addData('cont_text.stopped', cont_text.tStopRefresh)
 # check responses
 if cont_key.keys in ['', [], None]:  # No response was made
     cont_key.keys = None
@@ -380,7 +441,7 @@ if pic_set == 1:
     direc = 'Set1/'
 elif pic_set == 2:
     direc = 'Set2/'
-thisExp.addData('picture set', pic_set)
+thisExp.addData('picture_set', pic_set)
 
 import pandas as pd #for csv reading
 num_per_group = slider_3.getRating()
@@ -390,19 +451,26 @@ elif num_per_group == 4:
     img_grps = pd.read_csv('image_groups_4p.csv')
 elif num_per_group == 5:
     img_grps = pd.read_csv('image_groups_5p.csv')
-    
-thisExp.addData('set_text.started', set_text.tStartRefresh)
-thisExp.addData('set_text.stopped', set_text.tStopRefresh)
-thisExp.addData('slider_2.response', slider_2.getRating())
-thisExp.addData('slider_2.rt', slider_2.getRT())
-thisExp.addData('slider_2.started', slider_2.tStartRefresh)
-thisExp.addData('slider_2.stopped', slider_2.tStopRefresh)
-thisExp.addData('pergroup_text.started', pergroup_text.tStartRefresh)
-thisExp.addData('pergroup_text.stopped', pergroup_text.tStopRefresh)
-thisExp.addData('slider_3.response', slider_3.getRating())
-thisExp.addData('slider_3.rt', slider_3.getRT())
-thisExp.addData('slider_3.started', slider_3.tStartRefresh)
-thisExp.addData('slider_3.stopped', slider_3.tStopRefresh)
+thisExp.addData('num_per_group', num_per_group)
+
+sync = ['audio', 'diode', 'TTL']
+sync_method = sync[slider_4.getRating()]
+if sync_method == 'audio':
+    audio = 1.5
+    diode = 0
+elif sync_method == 'diode':
+    audio = 0
+    diode = 1.5
+else:
+    audio = 0
+    diode= 0
+thisExp.addData('sync_method', sync_method)
+thisExp.addData('sync_text.started', sync_text.tStartRefresh)
+thisExp.addData('sync_text.stopped', sync_text.tStopRefresh)
+thisExp.addData('slider_4.response', slider_4.getRating())
+thisExp.addData('slider_4.rt', slider_4.getRT())
+thisExp.addData('slider_4.started', slider_4.tStartRefresh)
+thisExp.addData('slider_4.stopped', slider_4.tStopRefresh)
 # the Routine "settings" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
@@ -592,8 +660,9 @@ for thisTrial in trials:
     
     # ------Prepare to start Routine "trl_img_loc"-------
     continueRoutine = True
-    routineTimer.add(1.500000)
     # update component parameters for each repeat
+    thisExp.addData('group_pair', pair_ind);
+    
     # choose center image
     image_sign = randint(0, 2*num_per_group) # choose randomly from 2 groups of images
     image_num = image_sign + 2*num_per_group*(pair_ind - 1) # get chosen image from correct set of groups
@@ -650,8 +719,10 @@ for thisTrial in trials:
     key_resp_2.keys = []
     key_resp_2.rt = []
     _key_resp_2_allKeys = []
+    sound_1.setSound('A', secs=audio, hamming=True)
+    sound_1.setVolume(1, log=False)
     # keep track of which components have finished
-    trl_img_locComponents = [stim, left, right, key_resp_2]
+    trl_img_locComponents = [stim, left, right, key_resp_2, polygon, sound_1]
     for thisComponent in trl_img_locComponents:
         thisComponent.tStart = None
         thisComponent.tStop = None
@@ -666,7 +737,7 @@ for thisTrial in trials:
     frameN = -1
     
     # -------Run Routine "trl_img_loc"-------
-    while continueRoutine and routineTimer.getTime() > 0:
+    while continueRoutine:
         # get current time
         t = trl_img_locClock.getTime()
         tThisFlip = win.getFutureFlipTime(clock=trl_img_locClock)
@@ -760,6 +831,38 @@ for thisTrial in trials:
                 # a response ends the routine
                 continueRoutine = False
         
+        # *polygon* updates
+        if polygon.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            polygon.frameNStart = frameN  # exact frame index
+            polygon.tStart = t  # local t and not account for scr refresh
+            polygon.tStartRefresh = tThisFlipGlobal  # on global time
+            win.timeOnFlip(polygon, 'tStartRefresh')  # time at next scr refresh
+            polygon.setAutoDraw(True)
+        if polygon.status == STARTED:
+            # is it time to stop? (based on global clock, using actual start)
+            if tThisFlipGlobal > polygon.tStartRefresh + diode-frameTolerance:
+                # keep track of stop time/frame for later
+                polygon.tStop = t  # not accounting for scr refresh
+                polygon.frameNStop = frameN  # exact frame index
+                win.timeOnFlip(polygon, 'tStopRefresh')  # time at next scr refresh
+                polygon.setAutoDraw(False)
+        # start/stop sound_1
+        if sound_1.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # keep track of start time/frame for later
+            sound_1.frameNStart = frameN  # exact frame index
+            sound_1.tStart = t  # local t and not account for scr refresh
+            sound_1.tStartRefresh = tThisFlipGlobal  # on global time
+            sound_1.play(when=win)  # sync with win flip
+        if sound_1.status == STARTED:
+            # is it time to stop? (based on global clock, using actual start)
+            if tThisFlipGlobal > sound_1.tStartRefresh + audio-frameTolerance:
+                # keep track of stop time/frame for later
+                sound_1.tStop = t  # not accounting for scr refresh
+                sound_1.frameNStop = frameN  # exact frame index
+                win.timeOnFlip(sound_1, 'tStopRefresh')  # time at next scr refresh
+                sound_1.stop()
+        
         # check for quit (typically the Esc key)
         if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
             core.quit()
@@ -783,8 +886,14 @@ for thisTrial in trials:
             thisComponent.setAutoDraw(False)
     if key_resp_2.corr:
         correct = 'CORRECT'
+        thisExp.addData('ans_correctness', 1)
     else:
         correct = 'INCORRECT'
+        thisExp.addData('ans_correctness', 0)
+    if len(key_resp_2.keys) == 0:
+        thisExp.addData('choice', None)
+    else:
+        thisExp.addData('choice', key_resp_2.keys)
     trials.addData('stim.started', stim.tStartRefresh)
     trials.addData('stim.stopped', stim.tStopRefresh)
     trials.addData('left.started', left.tStartRefresh)
@@ -806,6 +915,13 @@ for thisTrial in trials:
         trials.addData('key_resp_2.rt', key_resp_2.rt)
     trials.addData('key_resp_2.started', key_resp_2.tStartRefresh)
     trials.addData('key_resp_2.stopped', key_resp_2.tStopRefresh)
+    trials.addData('polygon.started', polygon.tStartRefresh)
+    trials.addData('polygon.stopped', polygon.tStopRefresh)
+    sound_1.stop()  # ensure sound has stopped at end of routine
+    trials.addData('sound_1.started', sound_1.tStartRefresh)
+    trials.addData('sound_1.stopped', sound_1.tStopRefresh)
+    # the Routine "trl_img_loc" was not non-slip safe, so reset the non-slip timer
+    routineTimer.reset()
     
     # ------Prepare to start Routine "feedback1"-------
     continueRoutine = True
@@ -954,7 +1070,7 @@ for thisTrial in trials:
 continueRoutine = True
 # update component parameters for each repeat
 # keep track of which components have finished
-thank_youComponents = []
+thank_youComponents = [end_text]
 for thisComponent in thank_youComponents:
     thisComponent.tStart = None
     thisComponent.tStop = None
@@ -977,6 +1093,15 @@ while continueRoutine:
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
     
+    # *end_text* updates
+    if end_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        end_text.frameNStart = frameN  # exact frame index
+        end_text.tStart = t  # local t and not account for scr refresh
+        end_text.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(end_text, 'tStartRefresh')  # time at next scr refresh
+        end_text.setAutoDraw(True)
+    
     # check for quit (typically the Esc key)
     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
         core.quit()
@@ -998,6 +1123,8 @@ while continueRoutine:
 for thisComponent in thank_youComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
+thisExp.addData('end_text.started', end_text.tStartRefresh)
+thisExp.addData('end_text.stopped', end_text.tStopRefresh)
 # the Routine "thank_you" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 

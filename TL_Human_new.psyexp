@@ -42,7 +42,7 @@
         <Param name="flip" updates="constant" val="" valType="str"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
         <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
-        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+        <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
         <Param name="name" updates="None" val="welcome_text" valType="code"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
@@ -110,15 +110,15 @@
         <Param name="Before JS Experiment" updates="constant" val="pair_ind = 1;&amp;#10;right_image = null;&amp;#10;left_image = null;&amp;#10;stim_image = null;&amp;#10;sides = [&quot;left&quot;, &quot;right&quot;];&amp;#10;" valType="extendedCode"/>
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin JS Routine" updates="constant" val="image_sign = randint(0, (2 * num_per_group));&amp;#10;image_num = (image_sign + ((2 * num_per_group) * (pair_ind - 1)));&amp;#10;stim_image = img_grps.loc[[image_num, &quot;image&quot;]];&amp;#10;stim_group = img_grps.loc[[image_num, &quot;group&quot;]];&amp;#10;stim_group_num = img_grps.loc[[image_num, &quot;group_num&quot;]];&amp;#10;in_group = img_grps[(img_grps.group_num === stim_group_num)];&amp;#10;in_group = in_group[(in_group.group !== stim_group)];&amp;#10;in_group = in_group.reset_index();&amp;#10;rand_in = randint(0, in_group.length);&amp;#10;in_group_image = in_group.loc[[rand_in, &quot;image&quot;]];&amp;#10;in_group_group = in_group.loc[[rand_in, &quot;group&quot;]];&amp;#10;if ((stim_group_num === 1)) {&amp;#10;    out_group_num = (stim_group_num + 1);&amp;#10;} else {&amp;#10;    if ((stim_group_num === 3)) {&amp;#10;        out_group_num = (stim_group_num + 1);&amp;#10;    } else {&amp;#10;        out_group_num = (stim_group_num - 1);&amp;#10;    }&amp;#10;}&amp;#10;out_group = img_grps[(img_grps.group_num === out_group_num)];&amp;#10;out_group = out_group.reset_index();&amp;#10;rand_out = randint(0, out_group.length);&amp;#10;out_group_image = out_group.loc[[rand_out, &quot;image&quot;]];&amp;#10;out_group_group = out_group.loc[[rand_out, &quot;group&quot;]];&amp;#10;side_sign = randint(0, 2);&amp;#10;if ((side_sign === 0)) {&amp;#10;    left_image = in_group_image;&amp;#10;    right_image = out_group_image;&amp;#10;} else {&amp;#10;    left_image = out_group_image;&amp;#10;    right_image = in_group_image;&amp;#10;}&amp;#10;thisExp.addData(&quot;stim_image&quot;, stim_image);&amp;#10;thisExp.addData(&quot;left_image&quot;, left_image);&amp;#10;thisExp.addData(&quot;right_image&quot;, right_image);&amp;#10;if ((day === 2)) {&amp;#10;    if ((trials.thisRepN === 49)) {&amp;#10;        pair_ind = 2;&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="# choose center image&amp;#10;image_sign = randint(0, 2*num_per_group) # choose randomly from 2 groups of images&amp;#10;image_num = image_sign + 2*num_per_group*(pair_ind - 1) # get chosen image from correct set of groups&amp;#10;stim_image = img_grps.loc[image_num, 'image']&amp;#10;stim_group = img_grps.loc[image_num, 'group']&amp;#10;stim_group_num = img_grps.loc[image_num, 'group_num']&amp;#10;&amp;#10;# choose in-group image&amp;#10;in_group = img_grps[img_grps.group_num == stim_group_num]&amp;#10;in_group = in_group[in_group.group != stim_group]&amp;#10;in_group = in_group.reset_index()&amp;#10;rand_in = randint(0, len(in_group))&amp;#10;in_group_image = in_group.loc[rand_in, 'image']&amp;#10;in_group_group = in_group.loc[rand_in, 'group']&amp;#10;&amp;#10;# choose out-group image&amp;#10;if stim_group_num == 1: #add |3&amp;#10;    out_group_num = stim_group_num + 1&amp;#10;elif stim_group_num == 3:&amp;#10;    out_group_num = stim_group_num + 1&amp;#10;else:&amp;#10;    out_group_num = stim_group_num - 1&amp;#10;out_group = img_grps[img_grps.group_num == out_group_num]&amp;#10;out_group = out_group.reset_index()&amp;#10;rand_out = randint(0, len(out_group))&amp;#10;out_group_image = out_group.loc[rand_out, 'image']&amp;#10;out_group_group = out_group.loc[rand_out, 'group']&amp;#10;&amp;#10;# test: in-group always left&amp;#10;#left_image = in_group_image&amp;#10;#right_image = out_group_image&amp;#10;&amp;#10;# randomly assign side&amp;#10;side_sign = randint(0, 2) #non-inclusive (] for some reason&amp;#10;if side_sign == 0:&amp;#10;    left_image = in_group_image&amp;#10;    right_image = out_group_image&amp;#10;else:&amp;#10;    left_image = out_group_image&amp;#10;    right_image = in_group_image&amp;#10;    &amp;#10;# save image choices&amp;#10;thisExp.addData('stim_image', stim_image)&amp;#10;thisExp.addData('left_image', left_image)&amp;#10;thisExp.addData('right_image', right_image)&amp;#10;&amp;#10;# after 50 trials, move onto second set of image groups&amp;#10;if day == 2:&amp;#10;    if trials.thisRepN == 49:&amp;#10;        pair_ind = 2;" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="thisExp.addData(&quot;group_pair&quot;, pair_ind);&amp;#10;image_sign = randint(0, (2 * num_per_group));&amp;#10;image_num = (image_sign + ((2 * num_per_group) * (pair_ind - 1)));&amp;#10;stim_image = img_grps.loc[[image_num, &quot;image&quot;]];&amp;#10;stim_group = img_grps.loc[[image_num, &quot;group&quot;]];&amp;#10;stim_group_num = img_grps.loc[[image_num, &quot;group_num&quot;]];&amp;#10;in_group = img_grps[(img_grps.group_num === stim_group_num)];&amp;#10;in_group = in_group[(in_group.group !== stim_group)];&amp;#10;in_group = in_group.reset_index();&amp;#10;rand_in = randint(0, in_group.length);&amp;#10;in_group_image = in_group.loc[[rand_in, &quot;image&quot;]];&amp;#10;in_group_group = in_group.loc[[rand_in, &quot;group&quot;]];&amp;#10;if ((stim_group_num === 1)) {&amp;#10;    out_group_num = (stim_group_num + 1);&amp;#10;} else {&amp;#10;    if ((stim_group_num === 3)) {&amp;#10;        out_group_num = (stim_group_num + 1);&amp;#10;    } else {&amp;#10;        out_group_num = (stim_group_num - 1);&amp;#10;    }&amp;#10;}&amp;#10;out_group = img_grps[(img_grps.group_num === out_group_num)];&amp;#10;out_group = out_group.reset_index();&amp;#10;rand_out = randint(0, out_group.length);&amp;#10;out_group_image = out_group.loc[[rand_out, &quot;image&quot;]];&amp;#10;out_group_group = out_group.loc[[rand_out, &quot;group&quot;]];&amp;#10;side_sign = randint(0, 2);&amp;#10;if ((side_sign === 0)) {&amp;#10;    left_image = in_group_image;&amp;#10;    right_image = out_group_image;&amp;#10;} else {&amp;#10;    left_image = out_group_image;&amp;#10;    right_image = in_group_image;&amp;#10;}&amp;#10;thisExp.addData(&quot;stim_image&quot;, stim_image);&amp;#10;thisExp.addData(&quot;left_image&quot;, left_image);&amp;#10;thisExp.addData(&quot;right_image&quot;, right_image);&amp;#10;if ((day === 2)) {&amp;#10;    if ((trials.thisRepN === 49)) {&amp;#10;        pair_ind = 2;&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="thisExp.addData('group_pair', pair_ind);&amp;#10;&amp;#10;# choose center image&amp;#10;image_sign = randint(0, 2*num_per_group) # choose randomly from 2 groups of images&amp;#10;image_num = image_sign + 2*num_per_group*(pair_ind - 1) # get chosen image from correct set of groups&amp;#10;stim_image = img_grps.loc[image_num, 'image']&amp;#10;stim_group = img_grps.loc[image_num, 'group']&amp;#10;stim_group_num = img_grps.loc[image_num, 'group_num']&amp;#10;&amp;#10;# choose in-group image&amp;#10;in_group = img_grps[img_grps.group_num == stim_group_num]&amp;#10;in_group = in_group[in_group.group != stim_group]&amp;#10;in_group = in_group.reset_index()&amp;#10;rand_in = randint(0, len(in_group))&amp;#10;in_group_image = in_group.loc[rand_in, 'image']&amp;#10;in_group_group = in_group.loc[rand_in, 'group']&amp;#10;&amp;#10;# choose out-group image&amp;#10;if stim_group_num == 1: #add |3&amp;#10;    out_group_num = stim_group_num + 1&amp;#10;elif stim_group_num == 3:&amp;#10;    out_group_num = stim_group_num + 1&amp;#10;else:&amp;#10;    out_group_num = stim_group_num - 1&amp;#10;out_group = img_grps[img_grps.group_num == out_group_num]&amp;#10;out_group = out_group.reset_index()&amp;#10;rand_out = randint(0, len(out_group))&amp;#10;out_group_image = out_group.loc[rand_out, 'image']&amp;#10;out_group_group = out_group.loc[rand_out, 'group']&amp;#10;&amp;#10;# test: in-group always left&amp;#10;#left_image = in_group_image&amp;#10;#right_image = out_group_image&amp;#10;&amp;#10;# randomly assign side&amp;#10;side_sign = randint(0, 2) #non-inclusive (] for some reason&amp;#10;if side_sign == 0:&amp;#10;    left_image = in_group_image&amp;#10;    right_image = out_group_image&amp;#10;else:&amp;#10;    left_image = out_group_image&amp;#10;    right_image = in_group_image&amp;#10;    &amp;#10;# save image choices&amp;#10;thisExp.addData('stim_image', stim_image)&amp;#10;thisExp.addData('left_image', left_image)&amp;#10;thisExp.addData('right_image', right_image)&amp;#10;&amp;#10;# after 50 trials, move onto second set of image groups&amp;#10;if day == 2:&amp;#10;    if trials.thisRepN == 49:&amp;#10;        pair_ind = 2;" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End JS Routine" updates="constant" val="if (key_resp_2.corr) {&amp;#10;    correct = &quot;CORRECT&quot;;&amp;#10;} else {&amp;#10;    correct = &quot;INCORRECT&quot;;&amp;#10;}&amp;#10;" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="if key_resp_2.corr:&amp;#10;    correct = 'CORRECT'&amp;#10;else:&amp;#10;    correct = 'INCORRECT'" valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="if (key_resp_2.corr) {&amp;#10;    correct = &quot;CORRECT&quot;;&amp;#10;    thisExp.addData(&quot;ans_correctness&quot;, 1);&amp;#10;} else {&amp;#10;    correct = &quot;INCORRECT&quot;;&amp;#10;    thisExp.addData(&quot;ans_correctness&quot;, 0);&amp;#10;}&amp;#10;if ((key_resp_2.keys.length === 0)) {&amp;#10;    thisExp.addData(&quot;choice&quot;, null);&amp;#10;} else {&amp;#10;    thisExp.addData(&quot;choice&quot;, key_resp_2.keys);&amp;#10;}&amp;#10;" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="if key_resp_2.corr:&amp;#10;    correct = 'CORRECT'&amp;#10;    thisExp.addData('ans_correctness', 1)&amp;#10;else:&amp;#10;    correct = 'INCORRECT'&amp;#10;    thisExp.addData('ans_correctness', 0)&amp;#10;if len(key_resp_2.keys) == 0:&amp;#10;    thisExp.addData('choice', None)&amp;#10;else:&amp;#10;    thisExp.addData('choice', key_resp_2.keys)" valType="extendedCode"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="name" updates="None" val="code" valType="code"/>
       </CodeComponent>
@@ -215,6 +215,46 @@
         <Param name="storeCorrect" updates="constant" val="True" valType="bool"/>
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
       </KeyboardComponent>
+      <PolygonComponent name="polygon">
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="fillColor" updates="constant" val="$[1,1,1]" valType="str"/>
+        <Param name="fillColorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="interpolate" updates="constant" val="linear" valType="str"/>
+        <Param name="lineColor" updates="constant" val="$[1,1,1]" valType="str"/>
+        <Param name="lineColorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="lineWidth" updates="constant" val="1" valType="code"/>
+        <Param name="nVertices" updates="constant" val="4" valType="int"/>
+        <Param name="name" updates="None" val="polygon" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(-.75, -.5)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="shape" updates="constant" val="rectangle" valType="str"/>
+        <Param name="size" updates="constant" val="(0.2, 0.2)" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="$diode" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+      </PolygonComponent>
+      <SoundComponent name="sound_1">
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="hamming" updates="constant" val="True" valType="bool"/>
+        <Param name="name" updates="None" val="sound_1" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="sound" updates="constant" val="A" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="$audio" valType="code"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+        <Param name="volume" updates="constant" val="1" valType="code"/>
+      </SoundComponent>
     </Routine>
     <Routine name="feedback1">
       <TextComponent name="feedback_text">
@@ -268,8 +308,57 @@
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
     </Routine>
-    <Routine name="thank_you"/>
+    <Routine name="thank_you">
+      <TextComponent name="end_text">
+        <Param name="color" updates="constant" val="black" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
+        <Param name="name" updates="None" val="end_text" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="constant" val="Thank you for your participation! Press esc to exit." valType="extendedStr"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+    </Routine>
     <Routine name="settings">
+      <TextComponent name="day_text">
+        <Param name="color" updates="constant" val="black" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
+        <Param name="name" updates="None" val="day_text" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(-.3, .45)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="constant" val="Choose TL day (1 or 2)" valType="extendedStr"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
       <SliderComponent name="slider">
         <Param name="color" updates="constant" val="Black" valType="str"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
@@ -283,9 +372,9 @@
         <Param name="name" updates="None" val="slider" valType="code"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
-        <Param name="pos" updates="constant" val="(0, .35)" valType="code"/>
+        <Param name="pos" updates="constant" val="(-.3, .35)" valType="code"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
-        <Param name="size" updates="constant" val="(.3, 0.05)" valType="code"/>
+        <Param name="size" updates="constant" val="(.2, 0.05)" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
@@ -299,89 +388,6 @@
         <Param name="ticks" updates="constant" val="(1, 2)" valType="list"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
       </SliderComponent>
-      <TextComponent name="cont_text">
-        <Param name="color" updates="constant" val="white" valType="str"/>
-        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="disabled" updates="None" val="False" valType="bool"/>
-        <Param name="durationEstim" updates="None" val="" valType="code"/>
-        <Param name="flip" updates="constant" val="" valType="str"/>
-        <Param name="font" updates="constant" val="Arial" valType="str"/>
-        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
-        <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
-        <Param name="name" updates="None" val="cont_text" valType="code"/>
-        <Param name="opacity" updates="constant" val="1" valType="code"/>
-        <Param name="ori" updates="constant" val="0" valType="code"/>
-        <Param name="pos" updates="constant" val="(0, -0.4)" valType="code"/>
-        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
-        <Param name="startEstim" updates="None" val="" valType="code"/>
-        <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="0.0" valType="code"/>
-        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="" valType="code"/>
-        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="constant" val="Press space bar to continue." valType="extendedStr"/>
-        <Param name="units" updates="None" val="from exp settings" valType="str"/>
-        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
-      </TextComponent>
-      <TextComponent name="day_text">
-        <Param name="color" updates="constant" val="black" valType="str"/>
-        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="disabled" updates="None" val="False" valType="bool"/>
-        <Param name="durationEstim" updates="None" val="" valType="code"/>
-        <Param name="flip" updates="constant" val="" valType="str"/>
-        <Param name="font" updates="constant" val="Arial" valType="str"/>
-        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
-        <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
-        <Param name="name" updates="None" val="day_text" valType="code"/>
-        <Param name="opacity" updates="constant" val="1" valType="code"/>
-        <Param name="ori" updates="constant" val="0" valType="code"/>
-        <Param name="pos" updates="constant" val="(0, .45)" valType="code"/>
-        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
-        <Param name="startEstim" updates="None" val="" valType="code"/>
-        <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="0.0" valType="code"/>
-        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="" valType="code"/>
-        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="constant" val="Choose TL day (1 or 2)" valType="extendedStr"/>
-        <Param name="units" updates="None" val="from exp settings" valType="str"/>
-        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
-      </TextComponent>
-      <KeyboardComponent name="cont_key">
-        <Param name="allowedKeys" updates="constant" val="'space'" valType="code"/>
-        <Param name="correctAns" updates="constant" val="" valType="str"/>
-        <Param name="disabled" updates="None" val="False" valType="bool"/>
-        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
-        <Param name="durationEstim" updates="None" val="" valType="code"/>
-        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
-        <Param name="name" updates="None" val="cont_key" valType="code"/>
-        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
-        <Param name="startEstim" updates="None" val="" valType="code"/>
-        <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="0.0" valType="code"/>
-        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="" valType="code"/>
-        <Param name="store" updates="constant" val="last key" valType="str"/>
-        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
-        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
-      </KeyboardComponent>
-      <CodeComponent name="init">
-        <Param name="Before Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Before JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
-        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End JS Routine" updates="constant" val="import * as pd from 'pandas';&amp;#10;var day, direc, img_grps, num_per_group, num_trls, pic_set;&amp;#10;day = slider.getRating();&amp;#10;if ((day === 1)) {&amp;#10;    num_trls = 200;&amp;#10;} else {&amp;#10;    if ((day === 2)) {&amp;#10;        num_trls = 250;&amp;#10;    }&amp;#10;}&amp;#10;thisExp.addData(&quot;day&quot;, day);&amp;#10;pic_set = slider_2.getRating();&amp;#10;if ((pic_set === 1)) {&amp;#10;    direc = &quot;Set1/&quot;;&amp;#10;} else {&amp;#10;    if ((pic_set === 2)) {&amp;#10;        direc = &quot;Set2/&quot;;&amp;#10;    }&amp;#10;}&amp;#10;thisExp.addData(&quot;picture set&quot;, pic_set);&amp;#10;num_per_group = slider_3.getRating();&amp;#10;if ((num_per_group === 3)) {&amp;#10;    img_grps = pd.read_csv(&quot;image_groups_3p.csv&quot;);&amp;#10;} else {&amp;#10;    if ((num_per_group === 4)) {&amp;#10;        img_grps = pd.read_csv(&quot;image_groups_4p.csv&quot;);&amp;#10;    } else {&amp;#10;        if ((num_per_group === 5)) {&amp;#10;            img_grps = pd.read_csv(&quot;image_groups_5p.csv&quot;);&amp;#10;        }&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="day = slider.getRating()&amp;#10;if day == 1:&amp;#10;    num_trls = 200&amp;#10;elif day == 2:&amp;#10;    num_trls = 250&amp;#10;thisExp.addData('day', day)&amp;#10;&amp;#10;pic_set = slider_2.getRating()&amp;#10;if pic_set == 1:&amp;#10;    direc = 'Set1/'&amp;#10;elif pic_set == 2:&amp;#10;    direc = 'Set2/'&amp;#10;thisExp.addData('picture set', pic_set)&amp;#10;&amp;#10;import pandas as pd #for csv reading&amp;#10;num_per_group = slider_3.getRating()&amp;#10;if num_per_group == 3:&amp;#10;    img_grps = pd.read_csv('image_groups_3p.csv')&amp;#10;elif num_per_group == 4:&amp;#10;    img_grps = pd.read_csv('image_groups_4p.csv')&amp;#10;elif num_per_group == 5:&amp;#10;    img_grps = pd.read_csv('image_groups_5p.csv')&amp;#10;    " valType="extendedCode"/>
-        <Param name="disabled" updates="None" val="False" valType="bool"/>
-        <Param name="name" updates="None" val="init" valType="code"/>
-      </CodeComponent>
       <TextComponent name="set_text">
         <Param name="color" updates="constant" val="black" valType="str"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
@@ -421,7 +427,7 @@
         <Param name="ori" updates="constant" val="0" valType="code"/>
         <Param name="pos" updates="constant" val="(0, 0.05)" valType="code"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
-        <Param name="size" updates="constant" val="(0.3, 0.05)" valType="code"/>
+        <Param name="size" updates="constant" val="(0.2, 0.05)" valType="code"/>
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
@@ -455,7 +461,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="constant" val="Choose number of images per group (3, 4, or 5)" valType="extendedStr"/>
+        <Param name="text" updates="constant" val="Choose number of images per group (3-5)" valType="extendedStr"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
@@ -486,6 +492,118 @@
         <Param name="styles" updates="constant" val="('radio',)" valType="fixedList"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
         <Param name="ticks" updates="constant" val="(3, 4, 5)" valType="list"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+      </SliderComponent>
+      <TextComponent name="cont_text">
+        <Param name="color" updates="constant" val="black" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
+        <Param name="name" updates="None" val="cont_text" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, -0.4)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="constant" val="Press space bar to continue." valType="extendedStr"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+      <KeyboardComponent name="cont_key">
+        <Param name="allowedKeys" updates="constant" val="'space'" valType="code"/>
+        <Param name="correctAns" updates="constant" val="" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="name" updates="None" val="cont_key" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="store" updates="constant" val="last key" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
+      <CodeComponent name="init">
+        <Param name="Before Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Before JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
+        <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="Each JS Frame" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="import * as pd from 'pandas';&amp;#10;var audio, day, diode, direc, img_grps, num_per_group, num_trls, pic_set, sync, sync_method;&amp;#10;day = slider.getRating();&amp;#10;if ((day === 1)) {&amp;#10;    num_trls = 200;&amp;#10;} else {&amp;#10;    if ((day === 2)) {&amp;#10;        num_trls = 250;&amp;#10;    }&amp;#10;}&amp;#10;thisExp.addData(&quot;day&quot;, day);&amp;#10;pic_set = slider_2.getRating();&amp;#10;if ((pic_set === 1)) {&amp;#10;    direc = &quot;Set1/&quot;;&amp;#10;} else {&amp;#10;    if ((pic_set === 2)) {&amp;#10;        direc = &quot;Set2/&quot;;&amp;#10;    }&amp;#10;}&amp;#10;thisExp.addData(&quot;picture_set&quot;, pic_set);&amp;#10;num_per_group = slider_3.getRating();&amp;#10;if ((num_per_group === 3)) {&amp;#10;    img_grps = pd.read_csv(&quot;image_groups_3p.csv&quot;);&amp;#10;} else {&amp;#10;    if ((num_per_group === 4)) {&amp;#10;        img_grps = pd.read_csv(&quot;image_groups_4p.csv&quot;);&amp;#10;    } else {&amp;#10;        if ((num_per_group === 5)) {&amp;#10;            img_grps = pd.read_csv(&quot;image_groups_5p.csv&quot;);&amp;#10;        }&amp;#10;    }&amp;#10;}&amp;#10;thisExp.addData(&quot;num_per_group&quot;, num_per_group);&amp;#10;sync = [&quot;audio&quot;, &quot;diode&quot;, &quot;TTL&quot;];&amp;#10;sync_method = sync[slider_4.getRating()];&amp;#10;if ((sync_method === &quot;audio&quot;)) {&amp;#10;    audio = 1.5;&amp;#10;    diode = 0;&amp;#10;} else {&amp;#10;    if ((sync_method === &quot;diode&quot;)) {&amp;#10;        audio = 0;&amp;#10;        diode = 1.5;&amp;#10;    } else {&amp;#10;        audio = 0;&amp;#10;        diode = 0;&amp;#10;    }&amp;#10;}&amp;#10;thisExp.addData(&quot;sync_method&quot;, sync_method);&amp;#10;" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="day = slider.getRating()&amp;#10;if day == 1:&amp;#10;    num_trls = 200&amp;#10;elif day == 2:&amp;#10;    num_trls = 250&amp;#10;thisExp.addData('day', day)&amp;#10;&amp;#10;pic_set = slider_2.getRating()&amp;#10;if pic_set == 1:&amp;#10;    direc = 'Set1/'&amp;#10;elif pic_set == 2:&amp;#10;    direc = 'Set2/'&amp;#10;thisExp.addData('picture_set', pic_set)&amp;#10;&amp;#10;import pandas as pd #for csv reading&amp;#10;num_per_group = slider_3.getRating()&amp;#10;if num_per_group == 3:&amp;#10;    img_grps = pd.read_csv('image_groups_3p.csv')&amp;#10;elif num_per_group == 4:&amp;#10;    img_grps = pd.read_csv('image_groups_4p.csv')&amp;#10;elif num_per_group == 5:&amp;#10;    img_grps = pd.read_csv('image_groups_5p.csv')&amp;#10;thisExp.addData('num_per_group', num_per_group)&amp;#10;&amp;#10;sync = ['audio', 'diode', 'TTL']&amp;#10;sync_method = sync[slider_4.getRating()]&amp;#10;if sync_method == 'audio':&amp;#10;    audio = 1.5&amp;#10;    diode = 0&amp;#10;elif sync_method == 'diode':&amp;#10;    audio = 0&amp;#10;    diode = 1.5&amp;#10;else:&amp;#10;    audio = 0&amp;#10;    diode= 0&amp;#10;thisExp.addData('sync_method', sync_method)" valType="extendedCode"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="name" updates="None" val="init" valType="code"/>
+      </CodeComponent>
+      <TextComponent name="sync_text">
+        <Param name="color" updates="constant" val="black" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
+        <Param name="name" updates="None" val="sync_text" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(.3, .45)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="text" updates="constant" val="Choose a sync method" valType="extendedStr"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+      </TextComponent>
+      <SliderComponent name="slider_4">
+        <Param name="color" updates="constant" val="black" valType="str"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="disabled" updates="None" val="False" valType="bool"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="flip" updates="constant" val="False" valType="bool"/>
+        <Param name="font" updates="constant" val="HelveticaBold" valType="str"/>
+        <Param name="forceEndRoutine" updates="constant" val="False" valType="bool"/>
+        <Param name="granularity" updates="constant" val="1" valType="code"/>
+        <Param name="labels" updates="constant" val="'audio', 'diode', 'TTL'" valType="list"/>
+        <Param name="name" updates="None" val="slider_4" valType="code"/>
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="pos" updates="constant" val="(.3, 0.35)" valType="code"/>
+        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
+        <Param name="size" updates="constant" val="(.3, .05)" valType="code"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="stopType" updates="None" val="condition" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="storeHistory" updates="constant" val="False" valType="bool"/>
+        <Param name="storeRating" updates="constant" val="True" valType="bool"/>
+        <Param name="storeRatingTime" updates="constant" val="True" valType="bool"/>
+        <Param name="styles" updates="constant" val="('radio',)" valType="fixedList"/>
+        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
+        <Param name="ticks" updates="constant" val="(0, 1, 2)" valType="list"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
       </SliderComponent>
     </Routine>
