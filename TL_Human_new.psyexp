@@ -228,7 +228,7 @@
         <Param name="name" updates="None" val="polygon" valType="code"/>
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
-        <Param name="pos" updates="constant" val="(-.75, -.5)" valType="code"/>
+        <Param name="pos" updates="constant" val="[-.8, -.4]" valType="code"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
         <Param name="shape" updates="constant" val="rectangle" valType="str"/>
         <Param name="size" updates="constant" val="(0.2, 0.2)" valType="code"/>
@@ -489,7 +489,7 @@
         <Param name="storeHistory" updates="constant" val="False" valType="bool"/>
         <Param name="storeRating" updates="constant" val="True" valType="bool"/>
         <Param name="storeRatingTime" updates="constant" val="True" valType="bool"/>
-        <Param name="styles" updates="constant" val="['radio']" valType="fixedList"/>
+        <Param name="styles" updates="constant" val="('radio',)" valType="fixedList"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
         <Param name="ticks" updates="constant" val="(3, 4, 5)" valType="list"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
@@ -519,19 +519,19 @@
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>
       <CodeComponent name="init">
-        <Param name="Before Experiment" updates="constant" val="vis = 0;&amp;#10;cont_vis = 0&amp;#10;sync = ['audio', 'diode', 'TTL']" valType="extendedCode"/>
-        <Param name="Before JS Experiment" updates="constant" val="vis = 0;&amp;#10;cont_vis = 0;&amp;#10;sync = [&quot;audio&quot;, &quot;diode&quot;, &quot;TTL&quot;];&amp;#10;" valType="extendedCode"/>
+        <Param name="Before Experiment" updates="constant" val="comport_text = ''&amp;#10;vis = 0&amp;#10;cont_vis = 0&amp;#10;sync = ['audio', 'diode', 'TTL']" valType="extendedCode"/>
+        <Param name="Before JS Experiment" updates="constant" val="comport_text = &quot;&quot;;&amp;#10;vis = 0;&amp;#10;cont_vis = 0;&amp;#10;sync = [&quot;audio&quot;, &quot;diode&quot;, &quot;TTL&quot;];&amp;#10;" valType="extendedCode"/>
         <Param name="Begin Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin JS Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Begin Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="Code Type" updates="None" val="Auto-&gt;JS" valType="str"/>
-        <Param name="Each Frame" updates="constant" val="if slider_4.getRating() is not None:&amp;#10;    if sync[slider_4.getRating()] == 'TTL':&amp;#10;        vis = 1&amp;#10;    else:&amp;#10;        vis = 0&amp;#10;    if slider_3.getRating() is not None:&amp;#10;        if slider_2.getRating() is not None:&amp;#10;            if slider.getRating() is not None:&amp;#10;                cont_vis = 1&amp;#10;            else:&amp;#10;                cont_vis = 0&amp;#10;        else:&amp;#10;            cont_vis = 0&amp;#10;    else:&amp;#10;        cont_vis = 0&amp;#10;else:&amp;#10;    vis = 0&amp;#10;    cont_vis = 0" valType="extendedCode"/>
-        <Param name="Each JS Frame" updates="constant" val="if ((slider_4.getRating() !== null)) {&amp;#10;    if ((sync[slider_4.getRating()] === &quot;TTL&quot;)) {&amp;#10;        vis = 1;&amp;#10;    } else {&amp;#10;        vis = 0;&amp;#10;    }&amp;#10;    if ((slider_3.getRating() !== null)) {&amp;#10;        if ((slider_2.getRating() !== null)) {&amp;#10;            if ((slider.getRating() !== null)) {&amp;#10;                cont_vis = 1;&amp;#10;            } else {&amp;#10;                cont_vis = 0;&amp;#10;            }&amp;#10;        } else {&amp;#10;            cont_vis = 0;&amp;#10;        }&amp;#10;    } else {&amp;#10;        cont_vis = 0;&amp;#10;    }&amp;#10;} else {&amp;#10;    vis = 0;&amp;#10;    cont_vis = 0;&amp;#10;}&amp;#10;" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="if slider_4.getRating() is not None:&amp;#10;    print(slider_4.getRating())&amp;#10;    if sync[int(slider_4.getRating())] == 'TTL':&amp;#10;        comport_text = 'Enter com port name (see readme for instructions)'&amp;#10;        vis = 1&amp;#10;    else:&amp;#10;        comport_text = ''&amp;#10;        vis = 0&amp;#10;    if slider_3.getRating() is not None:&amp;#10;        if slider_2.getRating() is not None:&amp;#10;            if slider.getRating() is not None:&amp;#10;                cont_vis = 1&amp;#10;            else:&amp;#10;                cont_vis = 0&amp;#10;        else:&amp;#10;            cont_vis = 0&amp;#10;    else:&amp;#10;        cont_vis = 0&amp;#10;else:&amp;#10;    vis = 0&amp;#10;    cont_vis = 0" valType="extendedCode"/>
+        <Param name="Each JS Frame" updates="constant" val="if ((slider_4.getRating() !== null)) {&amp;#10;    console.log(slider_4.getRating());&amp;#10;    if ((sync[Number.parseInt(slider_4.getRating())] === &quot;TTL&quot;)) {&amp;#10;        comport_text = &quot;Enter com port name (see readme for instructions)&quot;;&amp;#10;        vis = 1;&amp;#10;    } else {&amp;#10;        comport_text = &quot;&quot;;&amp;#10;        vis = 0;&amp;#10;    }&amp;#10;    if ((slider_3.getRating() !== null)) {&amp;#10;        if ((slider_2.getRating() !== null)) {&amp;#10;            if ((slider.getRating() !== null)) {&amp;#10;                cont_vis = 1;&amp;#10;            } else {&amp;#10;                cont_vis = 0;&amp;#10;            }&amp;#10;        } else {&amp;#10;            cont_vis = 0;&amp;#10;        }&amp;#10;    } else {&amp;#10;        cont_vis = 0;&amp;#10;    }&amp;#10;} else {&amp;#10;    vis = 0;&amp;#10;    cont_vis = 0;&amp;#10;}&amp;#10;" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="End JS Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End JS Routine" updates="constant" val="import * as pd from 'pandas';&amp;#10;var audio, day, diode, direc, img_grps, num_per_group, num_trls, pic_set, ser, sync_method;&amp;#10;day = slider.getRating();&amp;#10;if ((day === 1)) {&amp;#10;    num_trls = 200;&amp;#10;} else {&amp;#10;    if ((day === 2)) {&amp;#10;        num_trls = 250;&amp;#10;    }&amp;#10;}&amp;#10;thisExp.addData(&quot;day&quot;, day);&amp;#10;pic_set = slider_2.getRating();&amp;#10;if ((pic_set === 1)) {&amp;#10;    direc = &quot;Set1/&quot;;&amp;#10;} else {&amp;#10;    if ((pic_set === 2)) {&amp;#10;        direc = &quot;Set2/&quot;;&amp;#10;    }&amp;#10;}&amp;#10;thisExp.addData(&quot;picture_set&quot;, pic_set);&amp;#10;num_per_group = slider_3.getRating();&amp;#10;if ((num_per_group === 3)) {&amp;#10;    img_grps = pd.read_csv(&quot;image_groups_3p.csv&quot;);&amp;#10;} else {&amp;#10;    if ((num_per_group === 4)) {&amp;#10;        img_grps = pd.read_csv(&quot;image_groups_4p.csv&quot;);&amp;#10;    } else {&amp;#10;        if ((num_per_group === 5)) {&amp;#10;            img_grps = pd.read_csv(&quot;image_groups_5p.csv&quot;);&amp;#10;        }&amp;#10;    }&amp;#10;}&amp;#10;thisExp.addData(&quot;num_per_group&quot;, num_per_group);&amp;#10;sync_method = sync[slider_4.getRating()];&amp;#10;if ((sync_method === &quot;audio&quot;)) {&amp;#10;    audio = 1.5;&amp;#10;    diode = 0;&amp;#10;} else {&amp;#10;    if ((sync_method === &quot;diode&quot;)) {&amp;#10;        audio = 0;&amp;#10;        diode = 1.5;&amp;#10;    } else {&amp;#10;        import * as serial from 'serial';&amp;#10;        audio = 0;&amp;#10;        diode = 0;&amp;#10;        ser = new serial.Serial(textbox.text, 19200, {&quot;timeout&quot;: 1});&amp;#10;        ser.dtr = false;&amp;#10;    }&amp;#10;}&amp;#10;thisExp.addData(&quot;sync_method&quot;, sync_method);&amp;#10;" valType="extendedCode"/>
-        <Param name="End Routine" updates="constant" val="day = slider.getRating()&amp;#10;if day == 1:&amp;#10;    num_trls = 200&amp;#10;elif day == 2:&amp;#10;    num_trls = 250&amp;#10;thisExp.addData('day', day)&amp;#10;&amp;#10;pic_set = slider_2.getRating()&amp;#10;if pic_set == 1:&amp;#10;    direc = 'Set1/'&amp;#10;elif pic_set == 2:&amp;#10;    direc = 'Set2/'&amp;#10;thisExp.addData('picture_set', pic_set)&amp;#10;&amp;#10;import pandas as pd #for csv reading&amp;#10;num_per_group = slider_3.getRating()&amp;#10;if num_per_group == 3:&amp;#10;    img_grps = pd.read_csv('image_groups_3p.csv')&amp;#10;elif num_per_group == 4:&amp;#10;    img_grps = pd.read_csv('image_groups_4p.csv')&amp;#10;elif num_per_group == 5:&amp;#10;    img_grps = pd.read_csv('image_groups_5p.csv')&amp;#10;thisExp.addData('num_per_group', num_per_group)&amp;#10;&amp;#10;sync_method = sync[slider_4.getRating()]&amp;#10;if sync_method == 'audio':&amp;#10;    audio = 1.5&amp;#10;    diode = 0&amp;#10;elif sync_method == 'diode':&amp;#10;    audio = 0&amp;#10;    diode = 1.5&amp;#10;else:&amp;#10;    import serial&amp;#10;    audio = 0&amp;#10;    diode= 0&amp;#10;    ser = serial.Serial(textbox.text, 19200, timeout = 1)&amp;#10;    ser.dtr = False;&amp;#10;thisExp.addData('sync_method', sync_method)" valType="extendedCode"/>
+        <Param name="End JS Routine" updates="constant" val="import * as pd from 'pandas';&amp;#10;var audio, day, diode, direc, img_grps, num_per_group, num_trls, pic_set, ser, sync_method;&amp;#10;day = slider.getRating();&amp;#10;if ((day === 1)) {&amp;#10;    num_trls = 200;&amp;#10;} else {&amp;#10;    if ((day === 2)) {&amp;#10;        num_trls = 250;&amp;#10;    }&amp;#10;}&amp;#10;thisExp.addData(&quot;day&quot;, day);&amp;#10;pic_set = slider_2.getRating();&amp;#10;if ((pic_set === 1)) {&amp;#10;    direc = &quot;Set1/&quot;;&amp;#10;} else {&amp;#10;    if ((pic_set === 2)) {&amp;#10;        direc = &quot;Set2/&quot;;&amp;#10;    }&amp;#10;}&amp;#10;thisExp.addData(&quot;picture_set&quot;, pic_set);&amp;#10;num_per_group = slider_3.getRating();&amp;#10;if ((num_per_group === 3)) {&amp;#10;    img_grps = pd.read_csv(&quot;image_groups_3p.csv&quot;);&amp;#10;} else {&amp;#10;    if ((num_per_group === 4)) {&amp;#10;        img_grps = pd.read_csv(&quot;image_groups_4p.csv&quot;);&amp;#10;    } else {&amp;#10;        if ((num_per_group === 5)) {&amp;#10;            img_grps = pd.read_csv(&quot;image_groups_5p.csv&quot;);&amp;#10;        }&amp;#10;    }&amp;#10;}&amp;#10;thisExp.addData(&quot;num_per_group&quot;, num_per_group);&amp;#10;sync_method = sync[Number.parseInt(slider_4.getRating())];&amp;#10;if ((sync_method === &quot;audio&quot;)) {&amp;#10;    audio = 1.5;&amp;#10;    diode = 0;&amp;#10;} else {&amp;#10;    if ((sync_method === &quot;diode&quot;)) {&amp;#10;        audio = 0;&amp;#10;        diode = 1.5;&amp;#10;    } else {&amp;#10;        import * as serial from 'serial';&amp;#10;        audio = 0;&amp;#10;        diode = 0;&amp;#10;        ser = new serial.Serial(&quot;COM7&quot;, 19200, {&quot;timeout&quot;: 1});&amp;#10;        ser.dtr = false;&amp;#10;    }&amp;#10;}&amp;#10;thisExp.addData(&quot;sync_method&quot;, sync_method);&amp;#10;" valType="extendedCode"/>
+        <Param name="End Routine" updates="constant" val="day = slider.getRating()&amp;#10;if day == 1:&amp;#10;    num_trls = 200&amp;#10;elif day == 2:&amp;#10;    num_trls = 250&amp;#10;thisExp.addData('day', day)&amp;#10;&amp;#10;pic_set = slider_2.getRating()&amp;#10;if pic_set == 1:&amp;#10;    direc = 'Set1/'&amp;#10;elif pic_set == 2:&amp;#10;    direc = 'Set2/'&amp;#10;thisExp.addData('picture_set', pic_set)&amp;#10;&amp;#10;import pandas as pd #for csv reading&amp;#10;num_per_group = slider_3.getRating()&amp;#10;if num_per_group == 3:&amp;#10;    img_grps = pd.read_csv('image_groups_3p.csv')&amp;#10;elif num_per_group == 4:&amp;#10;    img_grps = pd.read_csv('image_groups_4p.csv')&amp;#10;elif num_per_group == 5:&amp;#10;    img_grps = pd.read_csv('image_groups_5p.csv')&amp;#10;thisExp.addData('num_per_group', num_per_group)&amp;#10;&amp;#10;sync_method = sync[int(slider_4.getRating())]&amp;#10;if sync_method == 'audio':&amp;#10;    audio = 1.5&amp;#10;    diode = 0&amp;#10;elif sync_method == 'diode':&amp;#10;    audio = 0&amp;#10;    diode = 1.5&amp;#10;else:&amp;#10;    import serial&amp;#10;    audio = 0&amp;#10;    diode= 0&amp;#10;    #ser = serial.Serial(textbox.text, 19200, timeout = 1)&amp;#10;    ser = serial.Serial('COM7', 19200, timeout = 1)&amp;#10;    ser.dtr = False;&amp;#10;thisExp.addData('sync_method', sync_method)" valType="extendedCode"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
         <Param name="name" updates="None" val="init" valType="code"/>
       </CodeComponent>
@@ -583,47 +583,12 @@
         <Param name="storeHistory" updates="constant" val="False" valType="bool"/>
         <Param name="storeRating" updates="constant" val="True" valType="bool"/>
         <Param name="storeRatingTime" updates="constant" val="True" valType="bool"/>
-        <Param name="styles" updates="constant" val="['radio']" valType="fixedList"/>
+        <Param name="styles" updates="constant" val="('radio',)" valType="fixedList"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
         <Param name="ticks" updates="constant" val="(0, 1, 2)" valType="list"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
       </SliderComponent>
-      <TextboxComponent name="textbox">
-        <Param name="anchor" updates="constant" val="center" valType="str"/>
-        <Param name="autoLog" updates="constant" val="True" valType="bool"/>
-        <Param name="bold" updates="constant" val="False" valType="bool"/>
-        <Param name="borderColor" updates="constant" val="None" valType="str"/>
-        <Param name="borderWidth" updates="constant" val="2" valType="num"/>
-        <Param name="color" updates="constant" val="black" valType="str"/>
-        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="disabled" updates="None" val="False" valType="bool"/>
-        <Param name="durationEstim" updates="None" val="" valType="code"/>
-        <Param name="editable" updates="constant" val="True" valType="bool"/>
-        <Param name="fillColor" updates="constant" val="None" valType="str"/>
-        <Param name="flipHoriz" updates="constant" val="False" valType="bool"/>
-        <Param name="flipVert" updates="constant" val="False" valType="bool"/>
-        <Param name="font" updates="constant" val="Arial" valType="str"/>
-        <Param name="italic" updates="constant" val="False" valType="bool"/>
-        <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
-        <Param name="letterHeight" updates="constant" val="0.05" valType="code"/>
-        <Param name="lineSpacing" updates="constant" val="1.0" valType="num"/>
-        <Param name="name" updates="None" val="textbox" valType="code"/>
-        <Param name="opacity" updates="set every frame" val="$vis" valType="code"/>
-        <Param name="ori" updates="constant" val="0" valType="code"/>
-        <Param name="padding" updates="constant" val="None" valType="code"/>
-        <Param name="pos" updates="constant" val="(0.3, .1)" valType="code"/>
-        <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
-        <Param name="size" updates="constant" val="[.5, .2]" valType="code"/>
-        <Param name="startEstim" updates="None" val="" valType="code"/>
-        <Param name="startType" updates="None" val="time (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="" valType="code"/>
-        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="stopVal" updates="constant" val="" valType="code"/>
-        <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="constant" val="" valType="extendedStr"/>
-        <Param name="units" updates="None" val="from exp settings" valType="str"/>
-      </TextboxComponent>
-      <TextComponent name="text">
+      <TextComponent name="enter_text">
         <Param name="color" updates="constant" val="black" valType="str"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="disabled" updates="None" val="False" valType="bool"/>
@@ -632,8 +597,8 @@
         <Param name="font" updates="constant" val="Arial" valType="str"/>
         <Param name="languageStyle" updates="None" val="LTR" valType="str"/>
         <Param name="letterHeight" updates="constant" val="0.025" valType="code"/>
-        <Param name="name" updates="None" val="text" valType="code"/>
-        <Param name="opacity" updates="set every frame" val="$vis" valType="code"/>
+        <Param name="name" updates="None" val="enter_text" valType="code"/>
+        <Param name="opacity" updates="set every frame" val="1" valType="code"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
         <Param name="pos" updates="constant" val="(.3, 0)" valType="code"/>
         <Param name="saveStartStop" updates="None" val="True" valType="bool"/>
@@ -643,7 +608,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="syncScreenRefresh" updates="None" val="True" valType="bool"/>
-        <Param name="text" updates="constant" val="Enter com port name (see readme for instructions)" valType="extendedStr"/>
+        <Param name="text" updates="set every frame" val="$comport_text" valType="extendedStr"/>
         <Param name="units" updates="None" val="from exp settings" valType="str"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
       </TextComponent>

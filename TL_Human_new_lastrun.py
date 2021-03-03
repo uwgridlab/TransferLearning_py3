@@ -1,8 +1,8 @@
 ﻿#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-This experiment was created using PsychoPy3 Experiment Builder (v2020.2.10),
-    on Tue Mar  2 22:03:21 2021
+This experiment was created using PsychoPy3 Experiment Builder (v2020.2.3),
+    on March 02, 2021, at 22:44
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -28,7 +28,8 @@ import sys  # to get file system encoding
 
 from psychopy.hardware import keyboard
 
-vis = 0;
+comport_text = ''
+vis = 0
 cont_vis = 0
 sync = ['audio', 'diode', 'TTL']
 pair_ind = 1
@@ -43,10 +44,10 @@ _thisDir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(_thisDir)
 
 # Store info about the experiment session
-psychopyVersion = '2020.2.10'
+psychopyVersion = '2020.2.3'
 expName = 'TL_Human_new'  # from the Builder filename that created this script
 expInfo = {'participant': '', 'session': '001'}
-dlg = gui.DlgFromDict(dictionary=expInfo, sortKeys=False, title=expName)
+dlg = gui.DlgFromDict(dictionary=expInfo, sort_keys=False, title=expName)
 if dlg.OK == False:
     core.quit()  # user pressed cancel
 expInfo['date'] = data.getDateStr()  # add a simple timestamp
@@ -59,7 +60,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='/Users/llevinson/Documents/TransferLearning_py3/TL_Human_new_lastrun.py',
+    originPath='C:\\GRIDLAB\\Tasks\\Transfer_Human_py3\\TransferLearning_py3\\TL_Human_new_lastrun.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -69,7 +70,7 @@ logging.console.setLevel(logging.WARNING)  # this outputs to the screen, not a f
 endExpNow = False  # flag for 'escape' or other condition => quit the exp
 frameTolerance = 0.001  # how close to onset before 'same' frame
 
-# Start Code - component code to be run after the window creation
+# Start Code - component code to be run before the window creation
 
 # Setup the Window
 win = visual.Window(
@@ -102,7 +103,7 @@ slider = visual.Slider(win=win, name='slider',
     labels=['1', '2'], ticks=(1, 2),
     granularity=1, style=['radio'],
     color='Black', font='HelveticaBold',
-    flip=False, depth=-1)
+    flip=False)
 set_text = visual.TextStim(win=win, name='set_text',
     text='Choose picture set (1 or 2)',
     font='Arial',
@@ -115,7 +116,7 @@ slider_2 = visual.Slider(win=win, name='slider_2',
     labels=['1', '2'], ticks=(1, 2),
     granularity=1, style=['radio'],
     color='Black', font='HelveticaBold',
-    flip=False, depth=-3)
+    flip=False)
 pergroup_text = visual.TextStim(win=win, name='pergroup_text',
     text='Choose number of images per group (3-5)',
     font='Arial',
@@ -128,7 +129,7 @@ slider_3 = visual.Slider(win=win, name='slider_3',
     labels=['3', '4', '5'], ticks=(3, 4, 5),
     granularity=1, style=['radio'],
     color='Black', font='HelveticaBold',
-    flip=False, depth=-5)
+    flip=False)
 cont_text = visual.TextStim(win=win, name='cont_text',
     text='Click arrow to continue.',
     font='Arial',
@@ -148,37 +149,21 @@ slider_4 = visual.Slider(win=win, name='slider_4',
     labels=['audio', 'diode', 'TTL'], ticks=(0, 1, 2),
     granularity=1, style=['radio'],
     color='black', font='HelveticaBold',
-    flip=False, depth=-9)
-textbox = visual.TextBox2(
-     win, text=None, font='Arial',
-     pos=(0.3, .1),     letterHeight=0.05,
-     size=[.5, .2], borderWidth=2.0,
-     color='black', colorSpace='rgb',
-     opacity=1.0,
-     bold=False, italic=False,
-     lineSpacing=1.0,
-     padding=None,
-     anchor='center',
-     fillColor=None, borderColor=None,
-     flipHoriz=False, flipVert=False,
-     editable=True,
-     name='textbox',
-     autoLog=True,
-)
-text = visual.TextStim(win=win, name='text',
-    text='Enter com port name (see readme for instructions)',
+    flip=False)
+enter_text = visual.TextStim(win=win, name='enter_text',
+    text='default text',
     font='Arial',
     pos=(.3, 0), height=0.025, wrapWidth=None, ori=0, 
     color='black', colorSpace='rgb', opacity=1.0, 
     languageStyle='LTR',
-    depth=-11.0);
+    depth=-10.0);
 polygon_2 = visual.ShapeStim(
     win=win, name='polygon_2',
     vertices=[[-(.1, .1)[0]/2.0,-(.1, .1)[1]/2.0], [+(.1, .1)[0]/2.0,-(.1, .1)[1]/2.0], [0,(.1, .1)[1]/2.0]],
     ori=90, pos=(.4, -.4),
     lineWidth=1, lineColor=[1,1,1], lineColorSpace='rgb',
     fillColor=[1,0,0], fillColorSpace='rgb',
-    opacity=1.0, depth=-12.0, interpolate=True)
+    opacity=1.0, depth=-11.0, interpolate=True)
 cont_mouse = event.Mouse(win=win)
 x, y = [None, None]
 cont_mouse.mouseClock = core.Clock()
@@ -235,7 +220,7 @@ key_resp_2 = keyboard.Keyboard()
 polygon = visual.Rect(
     win=win, name='polygon',
     width=(0.2, 0.2)[0], height=(0.2, 0.2)[1],
-    ori=0, pos=(-.75, -.5),
+    ori=0, pos=[-.8, -.4],
     lineWidth=1, lineColor=[1,1,1], lineColorSpace='rgb',
     fillColor=[1,1,1], fillColorSpace='rgb',
     opacity=1, depth=-5.0, interpolate=True)
@@ -288,7 +273,7 @@ slider_4.reset()
 cont_mouse.clicked_name = []
 gotValidClick = False  # until a click is received
 # keep track of which components have finished
-settingsComponents = [day_text, slider, set_text, slider_2, pergroup_text, slider_3, cont_text, sync_text, slider_4, textbox, text, polygon_2, cont_mouse]
+settingsComponents = [day_text, slider, set_text, slider_2, pergroup_text, slider_3, cont_text, sync_text, slider_4, enter_text, polygon_2, cont_mouse]
 for thisComponent in settingsComponents:
     thisComponent.tStart = None
     thisComponent.tStop = None
@@ -374,11 +359,14 @@ while continueRoutine:
         win.timeOnFlip(cont_text, 'tStartRefresh')  # time at next scr refresh
         cont_text.setAutoDraw(True)
     if cont_text.status == STARTED:  # only update if drawing
-        cont_text.setOpacity(cont_vis)
+        cont_text.setOpacity(cont_vis, log=False)
     if slider_4.getRating() is not None:
-        if sync[slider_4.getRating()] == 'TTL':
+        print(slider_4.getRating())
+        if sync[int(slider_4.getRating())] == 'TTL':
+            comport_text = 'Enter com port name (see readme for instructions)'
             vis = 1
         else:
+            comport_text = ''
             vis = 0
         if slider_3.getRating() is not None:
             if slider_2.getRating() is not None:
@@ -412,27 +400,17 @@ while continueRoutine:
         win.timeOnFlip(slider_4, 'tStartRefresh')  # time at next scr refresh
         slider_4.setAutoDraw(True)
     
-    # *textbox* updates
-    if textbox.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+    # *enter_text* updates
+    if enter_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
         # keep track of start time/frame for later
-        textbox.frameNStart = frameN  # exact frame index
-        textbox.tStart = t  # local t and not account for scr refresh
-        textbox.tStartRefresh = tThisFlipGlobal  # on global time
-        win.timeOnFlip(textbox, 'tStartRefresh')  # time at next scr refresh
-        textbox.setAutoDraw(True)
-    if textbox.status == STARTED:  # only update if drawing
-        textbox.setOpacity(vis)
-    
-    # *text* updates
-    if text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-        # keep track of start time/frame for later
-        text.frameNStart = frameN  # exact frame index
-        text.tStart = t  # local t and not account for scr refresh
-        text.tStartRefresh = tThisFlipGlobal  # on global time
-        win.timeOnFlip(text, 'tStartRefresh')  # time at next scr refresh
-        text.setAutoDraw(True)
-    if text.status == STARTED:  # only update if drawing
-        text.setOpacity(vis)
+        enter_text.frameNStart = frameN  # exact frame index
+        enter_text.tStart = t  # local t and not account for scr refresh
+        enter_text.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(enter_text, 'tStartRefresh')  # time at next scr refresh
+        enter_text.setAutoDraw(True)
+    if enter_text.status == STARTED:  # only update if drawing
+        enter_text.setOpacity(1, log=False)
+        enter_text.setText(comport_text, log=False)
     
     # *polygon_2* updates
     if polygon_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
@@ -443,7 +421,7 @@ while continueRoutine:
         win.timeOnFlip(polygon_2, 'tStartRefresh')  # time at next scr refresh
         polygon_2.setAutoDraw(True)
     if polygon_2.status == STARTED:  # only update if drawing
-        polygon_2.setOpacity(cont_vis)
+        polygon_2.setOpacity(cont_vis, log=False)
     # *cont_mouse* updates
     if cont_mouse.status == NOT_STARTED and t >= 0.0-frameTolerance:
         # keep track of start time/frame for later
@@ -533,7 +511,7 @@ elif num_per_group == 5:
     img_grps = pd.read_csv('image_groups_5p.csv')
 thisExp.addData('num_per_group', num_per_group)
 
-sync_method = sync[slider_4.getRating()]
+sync_method = sync[int(slider_4.getRating())]
 if sync_method == 'audio':
     audio = 1.5
     diode = 0
@@ -544,7 +522,8 @@ else:
     import serial
     audio = 0
     diode= 0
-    ser = serial.Serial(textbox.text, 19200, timeout = 1)
+    #ser = serial.Serial(textbox.text, 19200, timeout = 1)
+    ser = serial.Serial('COM7', 19200, timeout = 1)
     ser.dtr = False;
 thisExp.addData('sync_method', sync_method)
 thisExp.addData('sync_text.started', sync_text.tStartRefresh)
@@ -553,12 +532,8 @@ thisExp.addData('slider_4.response', slider_4.getRating())
 thisExp.addData('slider_4.rt', slider_4.getRT())
 thisExp.addData('slider_4.started', slider_4.tStartRefresh)
 thisExp.addData('slider_4.stopped', slider_4.tStopRefresh)
-thisExp.addData('textbox.text',textbox.text)
-textbox.reset()
-thisExp.addData('textbox.started', textbox.tStartRefresh)
-thisExp.addData('textbox.stopped', textbox.tStopRefresh)
-thisExp.addData('text.started', text.tStartRefresh)
-thisExp.addData('text.stopped', text.tStopRefresh)
+thisExp.addData('enter_text.started', enter_text.tStartRefresh)
+thisExp.addData('enter_text.stopped', enter_text.tStopRefresh)
 thisExp.addData('polygon_2.started', polygon_2.tStartRefresh)
 thisExp.addData('polygon_2.stopped', polygon_2.tStopRefresh)
 # store data for thisExp (ExperimentHandler)
