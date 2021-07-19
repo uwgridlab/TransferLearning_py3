@@ -1,8 +1,8 @@
 ﻿#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-This experiment was created using PsychoPy3 Experiment Builder (v2020.2.3),
-    on March 02, 2021, at 22:44
+This experiment was created using PsychoPy3 Experiment Builder (v2020.2.10),
+    on Mon Jul 19 14:30:11 2021
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -44,10 +44,10 @@ _thisDir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(_thisDir)
 
 # Store info about the experiment session
-psychopyVersion = '2020.2.3'
+psychopyVersion = '2020.2.10'
 expName = 'TL_Human_new'  # from the Builder filename that created this script
 expInfo = {'participant': '', 'session': '001'}
-dlg = gui.DlgFromDict(dictionary=expInfo, sort_keys=False, title=expName)
+dlg = gui.DlgFromDict(dictionary=expInfo, sortKeys=False, title=expName)
 if dlg.OK == False:
     core.quit()  # user pressed cancel
 expInfo['date'] = data.getDateStr()  # add a simple timestamp
@@ -60,7 +60,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath='C:\\GRIDLAB\\Tasks\\Transfer_Human_py3\\TransferLearning_py3\\TL_Human_new_lastrun.py',
+    originPath='/Users/llevinson/Documents/TransferLearning_py3/TL_Human_new_lastrun.py',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -70,7 +70,7 @@ logging.console.setLevel(logging.WARNING)  # this outputs to the screen, not a f
 endExpNow = False  # flag for 'escape' or other condition => quit the exp
 frameTolerance = 0.001  # how close to onset before 'same' frame
 
-# Start Code - component code to be run before the window creation
+# Start Code - component code to be run after the window creation
 
 # Setup the Window
 win = visual.Window(
@@ -103,7 +103,7 @@ slider = visual.Slider(win=win, name='slider',
     labels=['1', '2'], ticks=(1, 2),
     granularity=1, style=['radio'],
     color='Black', font='HelveticaBold',
-    flip=False)
+    flip=False, depth=-1)
 set_text = visual.TextStim(win=win, name='set_text',
     text='Choose picture set (1 or 2)',
     font='Arial',
@@ -116,7 +116,7 @@ slider_2 = visual.Slider(win=win, name='slider_2',
     labels=['1', '2'], ticks=(1, 2),
     granularity=1, style=['radio'],
     color='Black', font='HelveticaBold',
-    flip=False)
+    flip=False, depth=-3)
 pergroup_text = visual.TextStim(win=win, name='pergroup_text',
     text='Choose number of images per group (3-5)',
     font='Arial',
@@ -129,7 +129,7 @@ slider_3 = visual.Slider(win=win, name='slider_3',
     labels=['3', '4', '5'], ticks=(3, 4, 5),
     granularity=1, style=['radio'],
     color='Black', font='HelveticaBold',
-    flip=False)
+    flip=False, depth=-5)
 cont_text = visual.TextStim(win=win, name='cont_text',
     text='Click arrow to continue.',
     font='Arial',
@@ -149,7 +149,7 @@ slider_4 = visual.Slider(win=win, name='slider_4',
     labels=['audio', 'diode', 'TTL'], ticks=(0, 1, 2),
     granularity=1, style=['radio'],
     color='black', font='HelveticaBold',
-    flip=False)
+    flip=False, depth=-9)
 enter_text = visual.TextStim(win=win, name='enter_text',
     text='default text',
     font='Arial',
@@ -359,7 +359,7 @@ while continueRoutine:
         win.timeOnFlip(cont_text, 'tStartRefresh')  # time at next scr refresh
         cont_text.setAutoDraw(True)
     if cont_text.status == STARTED:  # only update if drawing
-        cont_text.setOpacity(cont_vis, log=False)
+        cont_text.setOpacity(cont_vis)
     if slider_4.getRating() is not None:
         print(slider_4.getRating())
         if sync[int(slider_4.getRating())] == 'TTL':
@@ -409,8 +409,8 @@ while continueRoutine:
         win.timeOnFlip(enter_text, 'tStartRefresh')  # time at next scr refresh
         enter_text.setAutoDraw(True)
     if enter_text.status == STARTED:  # only update if drawing
-        enter_text.setOpacity(1, log=False)
-        enter_text.setText(comport_text, log=False)
+        enter_text.setOpacity(1)
+        enter_text.setText(comport_text)
     
     # *polygon_2* updates
     if polygon_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
@@ -421,7 +421,7 @@ while continueRoutine:
         win.timeOnFlip(polygon_2, 'tStartRefresh')  # time at next scr refresh
         polygon_2.setAutoDraw(True)
     if polygon_2.status == STARTED:  # only update if drawing
-        polygon_2.setOpacity(cont_vis, log=False)
+        polygon_2.setOpacity(cont_vis)
     # *cont_mouse* updates
     if cont_mouse.status == NOT_STARTED and t >= 0.0-frameTolerance:
         # keep track of start time/frame for later
@@ -786,6 +786,8 @@ for thisTrial in trials:
     # send TTL if it is sync method
     if sync_method == 'TTL':
         ser.dtr = True;
+        
+    key_resp_2.corr = False;
     stim.setImage(direc + stim_image)
     left.setImage(direc + left_image)
     right.setImage(direc + right_image)
@@ -894,8 +896,8 @@ for thisTrial in trials:
             theseKeys = key_resp_2.getKeys(keyList=['left', 'right'], waitRelease=False)
             _key_resp_2_allKeys.extend(theseKeys)
             if len(_key_resp_2_allKeys):
-                key_resp_2.keys = _key_resp_2_allKeys[-1].name  # just the last key pressed
-                key_resp_2.rt = _key_resp_2_allKeys[-1].rt
+                key_resp_2.keys = _key_resp_2_allKeys[0].name  # just the first key pressed
+                key_resp_2.rt = _key_resp_2_allKeys[0].rt
                 # was this correct?
                 if (key_resp_2.keys == str(sides[side_sign])) or (key_resp_2.keys == sides[side_sign]):
                     key_resp_2.corr = 1
