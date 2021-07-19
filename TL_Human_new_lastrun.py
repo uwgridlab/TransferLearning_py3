@@ -2,7 +2,11 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2020.2.10),
+<<<<<<< HEAD
     on Mon Jul 19 14:30:11 2021
+=======
+    on March 03, 2021, at 15:21
+>>>>>>> 4b51c46bfdbc3e0436bff6546968d9f0c933e402
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -60,7 +64,11 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
+<<<<<<< HEAD
     originPath='/Users/llevinson/Documents/TransferLearning_py3/TL_Human_new_lastrun.py',
+=======
+    originPath='C:\\Users\\gridl\\Documents\\SCH_experiments\\TransferLearning_py3\\TL_Human_new_lastrun.py',
+>>>>>>> 4b51c46bfdbc3e0436bff6546968d9f0c933e402
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -224,9 +232,9 @@ polygon = visual.Rect(
     lineWidth=1, lineColor=[1,1,1], lineColorSpace='rgb',
     fillColor=[1,1,1], fillColorSpace='rgb',
     opacity=1, depth=-5.0, interpolate=True)
-sound_1 = sound.Sound('A', secs=-1, stereo=True, hamming=True,
+sound_1 = sound.Sound('A', secs=1.5, stereo=True, hamming=True,
     name='sound_1')
-sound_1.setVolume(1)
+sound_1.setVolume(1.0)
 
 # Initialize components for Routine "feedback1"
 feedback1Clock = core.Clock()
@@ -513,17 +521,17 @@ thisExp.addData('num_per_group', num_per_group)
 
 sync_method = sync[int(slider_4.getRating())]
 if sync_method == 'audio':
-    audio = 1.5
+    audio = 1
     diode = 0
 elif sync_method == 'diode':
-    audio = 0
+    audio = int(0)
     diode = 1.5
 else:
     import serial
-    audio = 0
+    audio = int(0)
     diode= 0
     #ser = serial.Serial(textbox.text, 19200, timeout = 1)
-    ser = serial.Serial('COM7', 19200, timeout = 1)
+    ser = serial.Serial('COM3', 19200, timeout = 1)
     ser.dtr = False;
 thisExp.addData('sync_method', sync_method)
 thisExp.addData('sync_text.started', sync_text.tStartRefresh)
@@ -794,8 +802,8 @@ for thisTrial in trials:
     key_resp_2.keys = []
     key_resp_2.rt = []
     _key_resp_2_allKeys = []
-    sound_1.setSound('A', secs=audio, hamming=True)
-    sound_1.setVolume(1, log=False)
+    sound_1.setSound('A', secs=1.5, hamming=True)
+    sound_1.setVolume(audio, log=False)
     # keep track of which components have finished
     trl_img_locComponents = [stim, left, right, key_resp_2, polygon, sound_1]
     for thisComponent in trl_img_locComponents:
@@ -923,7 +931,7 @@ for thisTrial in trials:
                 win.timeOnFlip(polygon, 'tStopRefresh')  # time at next scr refresh
                 polygon.setAutoDraw(False)
         # start/stop sound_1
-        if sound_1.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        if sound_1.status == NOT_STARTED and tThisFlip >= 0-frameTolerance:
             # keep track of start time/frame for later
             sound_1.frameNStart = frameN  # exact frame index
             sound_1.tStart = t  # local t and not account for scr refresh
@@ -931,7 +939,7 @@ for thisTrial in trials:
             sound_1.play(when=win)  # sync with win flip
         if sound_1.status == STARTED:
             # is it time to stop? (based on global clock, using actual start)
-            if tThisFlipGlobal > sound_1.tStartRefresh + audio-frameTolerance:
+            if tThisFlipGlobal > sound_1.tStartRefresh + 1.5-frameTolerance:
                 # keep track of stop time/frame for later
                 sound_1.tStop = t  # not accounting for scr refresh
                 sound_1.frameNStop = frameN  # exact frame index
